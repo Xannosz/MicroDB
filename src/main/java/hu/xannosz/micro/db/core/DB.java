@@ -9,12 +9,16 @@ public class DB {
 
 	private Set<Table> tables = new HashSet<>();
 
-	public Table getTable(String name) {
+	Table getTable(String name) {
 		for (Table table : tables) {
 			if (table.getName().equals(name)) {
-				return new Table(table);
+				return table;
 			}
 		}
 		throw new TableNotFoundException(name);
+	}
+
+	public DataSet run(QueryExpression select){
+		return select.run(this);
 	}
 }
